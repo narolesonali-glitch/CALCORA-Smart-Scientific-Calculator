@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3efe5">
+  <meta name="description" content="Calcora — a clean, responsive scientific calculator.">
+  <title>Calcora — Smart Scientific Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Calcora home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span><strong>CALCORA</strong><small>SMART SCIENTIFIC CALCULATOR</small></span>
+      </a>
+      <div class="header-actions">
+        <span class="status-label"><span class="status-dot"></span> Ready to calculate</span>
+        <button class="icon-button" id="historyToggle" type="button" aria-label="Toggle calculation history" title="Calculation history">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8m0-5v5h5M12 7v5l3 2"/></svg>
+        </button>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color theme" title="Switch theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="calculator-card" aria-label="Scientific calculator">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">YOUR EVERYDAY MATH COMPANION</p>
+            <h1>Scientific calculator</h1>
+            <p class="subheading">Simple input. Smarter calculations.</p>
+          </div>
+          <div class="angle-switch" role="group" aria-label="Angle unit">
+            <button type="button" class="angle-button active" data-angle="DEG" aria-pressed="true">DEG</button>
+            <button type="button" class="angle-button" data-angle="RAD" aria-pressed="false">RAD</button>
+          </div>
+        </div>
+
+        <div class="display-panel">
+          <div class="display-meta">
+            <span id="displayMode">STANDARD MODE</span>
+            <span id="memoryIndicator" class="memory-indicator" aria-live="polite"></span>
+          </div>
+          <div class="expression" id="expression" aria-label="Current expression">&nbsp;</div>
+          <div class="result-row">
+            <span class="result-prefix">=</span>
+            <output class="result" id="result" aria-live="polite">0</output>
+          </div>
+          <p class="error-message" id="errorMessage" role="alert"></p>
+        </div>
+
+        <div class="keypad-toolbar">
+          <span>SCIENTIFIC FUNCTIONS</span>
+          <button class="text-button" id="memoryClear" type="button" title="Clear memory">MC</button>
+        </div>
+        <div class="scientific-grid" id="scientificKeys">
+          <button class="key scientific" data-action="function" data-value="sin">sin</button>
+          <button class="key scientific" data-action="function" data-value="cos">cos</button>
+          <button class="key scientific" data-action="function" data-value="tan">tan</button>
+          <button class="key scientific" data-action="function" data-value="log">log</button>
+          <button class="key scientific" data-action="function" data-value="ln">ln</button>
+          <button class="key scientific" data-action="square">x²</button>
+          <button class="key scientific" data-action="function" data-value="sqrt">√x</button>
+          <button class="key scientific" data-action="power">xʸ</button>
+          <button class="key scientific" data-action="reciprocal">1/x</button>
+          <button class="key scientific" data-action="factorial">n!</button>
+          <button class="key scientific" data-action="constant" data-value="pi">π</button>
+          <button class="key scientific" data-action="constant" data-value="e">e</button>
+          <button class="key scientific" data-action="parenthesis" data-value="(">(</button>
+          <button class="key scientific" data-action="parenthesis" data-value=")">)</button>
+          <button class="key scientific" data-action="percent">%</button>
+        </div>
+
+        <div class="keypad-toolbar basic-toolbar">
+          <span>STANDARD KEYPAD</span>
+          <span class="keyboard-hint">Keyboard supported</span>
+        </div>
+        <div class="basic-grid" id="basicKeys">
+          <button class="key utility" data-action="clear">AC</button>
+          <button class="key utility" data-action="delete" aria-label="Delete last character">DEL</button>
+          <button class="key utility" data-action="sign">±</button>
+          <button class="key operator" data-value="÷" data-action="operator">÷</button>
+
+          <button class="key number" data-value="7" data-action="number">7</button>
+          <button class="key number" data-value="8" data-action="number">8</button>
+          <button class="key number" data-value="9" data-action="number">9</button>
+          <button class="key operator" data-value="×" data-action="operator">×</button>
+
+          <button class="key number" data-value="4" data-action="number">4</button>
+          <button class="key number" data-value="5" data-action="number">5</button>
+          <button class="key number" data-value="6" data-action="number">6</button>
+          <button class="key operator" data-value="−" data-action="operator">−</button>
+
+          <button class="key number" data-value="1" data-action="number">1</button>
+          <button class="key number" data-value="2" data-action="number">2</button>
+          <button class="key number" data-value="3" data-action="number">3</button>
+          <button class="key operator" data-value="+" data-action="operator">+</button>
+
+          <button class="key number zero-key" data-value="0" data-action="number">0</button>
+          <button class="key number" data-value="." data-action="decimal">.</button>
+          <button class="key equals" data-action="equals" aria-label="Calculate result">=</button>
+        </div>
+        <div class="calculator-footnote"><span>⌨</span> Tip: Press Enter to calculate and Esc to clear.</div>
+      </section>
+
+      <aside class="history-card" id="historyPanel" aria-label="Calculation history">
+        <div class="history-heading">
+          <div><p class="eyebrow">YOUR RECENT WORK</p><h2>History</h2></div>
+          <button class="icon-button small" id="historyClose" type="button" aria-label="Close history panel">×</button>
+        </div>
+        <div class="history-list" id="historyList">
+          <div class="empty-history"><span class="empty-icon">↺</span><strong>No calculations yet</strong><p>Your recent calculations will appear here.</p></div>
+        </div>
+        <div class="history-footer">
+          <span id="historyCount">0 calculations</span>
+          <button class="text-button danger-text" id="clearHistory" type="button">Clear all</button>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span><strong>CALCORA</strong> <span class="footer-separator">·</span> Smart Scientific Calculator</span>
+      <span>Week 7 Interactive Web Project <span class="footer-separator">·</span> Built with HTML, CSS & JavaScript</span>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
